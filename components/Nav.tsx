@@ -4,10 +4,13 @@ import { Button } from "./ui/button";
 import { ShoppingCart, Star } from "lucide-react";
 import ShoppingCarts from "./ShoppingCarts";
 import StarProducts from "./StarProducts";
+import { useCartStore } from "@/app/stores/cartStore";
 
 export default function Nav() {
   const [openSheet, setOpenSheet] = useState(false);
   const [openFav, setOpenFav] = useState(false);
+  const items = useCartStore((state) => state.items);
+
   return (
     <div>
       <div className="flex flex-row w-full justify-end mt-2  border-b border-border ">
@@ -35,7 +38,7 @@ export default function Nav() {
           <div className="relative">
             <ShoppingCart />
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 flex items-center justify-center min-w-[1.2em] h-[1.2em]">
-              3
+              {items.length}
             </span>
           </div>
         </Button>
